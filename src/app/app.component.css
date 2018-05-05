@@ -1,0 +1,17 @@
+.container {
+    /*margin-top: 50px;*/
+    max-width: 100%;
+    padding: 50px;
+}
+
+#formUsuario {
+    margin-bottom: 15px;
+}
+
+#formHistorico {
+    margin-bottom: 15px
+}
+
+#formHistorico button {
+    height: 38px;
+}

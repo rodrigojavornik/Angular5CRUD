@@ -1,20 +1,81 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<div class="container">
 
+    <div class="row">
+        <div class="col-6">
+            <div class="form-row" id="formUsuario">
+                <div class="col-3">
+                    <input type="text" class="form-control" placeholder="nome" [(ngModel)]="usuarioAux.nome"/>
+                </div>
+                <div class="col-3">
+                    <input type="text" class="form-control" placeholder="email" [(ngModel)]="usuarioAux.email"/>
+                </div>
+                <div class="col-3">
+                    <input type="text" class="form-control" placeholder="telefone" [(ngModel)]="usuarioAux.telefone"/>
+                </div>
+                <button type="button" class="btn btn-success sm-2" (click)="submitUsuario(usuarioAux)">Salvar</button>
+            </div>
+
+
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Telefone</th>
+                    <th scope="col">Editar</th>
+                    <th scope="col">Apagar</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let usuario of listUsuarios" [ngClass]="{'table-active': currentUsuarioId == usuario.id}" (click)="getHistoricoByUsuario(usuario.id)">
+                    <th scope="row">{{usuario.id}}</th>
+                    <td>{{usuario.nome}}</td>
+                    <td>{{usuario.email}}</td>
+                    <td>{{usuario.telefone}}</td>
+                    <td>
+                        <button type="button" class="btn btn-ligth btn-sm" (click)="showEditUsuario(usuario)">Editar</button>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-primary btn-sm" (click)="deleteUsuario(usuario)">Apagar</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-5">
+            <div class="form-row" id="formHistorico">
+                <div class="col-5">
+                    <input type="text" class="form-control" placeholder="Ação" [(ngModel)]="historicoAux.action"/>
+                </div>
+                <div class="col-5">
+                    <input type="text" class="form-control" placeholder="Data" [(ngModel)]="historicoAux.dataAction"/>
+                </div>
+                <button type="button" class="btn btn-success sm-2" (click)="addHistorico(historicoAux)">Salvar</button>
+            </div>
+
+
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">Ação</th>
+                    <th scope="col">Data</th>
+                    <th scope="col">#</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let historico of listHistorico">
+                    <th scope="row">{{historico.id}}</th>
+                    <td>{{historico.action }}</td>
+                    <td>{{historico.dataAction }}</td>
+                    <td>
+                        <button type="button" class="btn btn-ligth btn-sm" (click)="deleteHistorico(historico)">Delete</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
